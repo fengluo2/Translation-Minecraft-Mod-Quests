@@ -1,6 +1,6 @@
 # Translation-Minecraft-Mod-Quests
-机翻MC整合包的任务及自定义物品  
-可以机翻汉化.lang和.json
+机翻MC整合包的任务及自定义物品(.lang和.json文件)  
+机翻完可以自己用，也可以在此之上进一步汉化  
 ## 命令格式  
 java -jar QuestsTranslation.jar file:file [id:id key:key speed:speed]  
 ## 使用示例  
