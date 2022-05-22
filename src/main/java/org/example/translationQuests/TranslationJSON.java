@@ -56,12 +56,16 @@ public class TranslationJSON {
         sum = lines.size() + db.size();
         translation(lines);
         translation(db);
-        if (file.getParent() == null) {
-            file = new File(file.getName() + "-zh_cn.lang");
-        } else {
-            String[] strs = (file.getParent() + "\\" + file.getName()).split("\\.");
-            file = new File(strs[0] + "-zh_cn.json");
+        String[] strs = null;
+        StringBuilder stringBuilder = new StringBuilder();
+        strs = file.getPath().split("\\.");
+        for (int i = 0; i < strs.length; i++) {
+            stringBuilder.append(strs[i]).append(".");
+            if (i == strs.length - 1) {
+                stringBuilder.append("-zh_cn.").append(strs[i]);
+            }
         }
+        file = new File(stringBuilder.toString());
         FileUtils.writeStringToFile(file, Utils.JSON_STATEMENT + mapper.writerWithDefaultPrettyPrinter().writeValueAsString(jsonNode), StandardCharsets.UTF_8);
     }
 
