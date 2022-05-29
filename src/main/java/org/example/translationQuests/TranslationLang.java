@@ -18,7 +18,7 @@ public class TranslationLang {
     private final Logger logger = LogManager.getLogger(getClass().getName());
 
     private ApiTran api = null;
-    private ObjectMapper mapper = Main.mapper;
+    private final ObjectMapper mapper = Main.mapper;
     private int sum = 0;
     private int count = 0;
 
@@ -40,11 +40,11 @@ public class TranslationLang {
     }
 
     public void translation(String langFile) throws IOException, InterruptedException {
-        List<String> strings = new ArrayList<String>();
+        List<String> strings = new ArrayList<>();
         strings.add(Utils.LANG_STATEMENT);
         File file = new File(langFile);
         List<String> stringItem = FileUtils.readLines(file, StandardCharsets.UTF_8);
-        String[] temp = null;
+        String[] temp;
         for (String string : stringItem) {
             if (!string.startsWith("#") && !string.isBlank()) {
                 sum++;
@@ -71,6 +71,6 @@ public class TranslationLang {
         } else {
             file = new File(file.getParent() + "\\zh_cn.lang");
         }
-        FileUtils.writeLines(file, strings);
+        FileUtils.writeLines(file, String.valueOf(StandardCharsets.UTF_8), strings);
     }
 }
